@@ -1,0 +1,59 @@
+{% extends 'cbv/extends/base.html' %}
+
+{% block title %}{{title}}{% endblock %}
+{% block content %}
+<center>
+<h2>welcone to {{title}}</h2>
+
+<form action="" method="post" id="loginForm">
+    {% csrf_token %}
+    {{form.username.label_tag}}
+    {{form.username}}
+    {{form.username.value}} <br>
+    {{form.username.help_text}} <br>
+    {{form.username.errors}} <br><br>
+    {{form.password.label_tag}}
+    {{form.password}}
+    {{form.password.value}}
+    {{form.password.errors}} <br><br>
+    <button type="submit" id="submitBtn">Login</button>
+    <button type="button" onclick="hide_login_btn()">hide login</button>
+    <button type="button" onclick="enable_login_btn()">Enable login</button>
+    <button type="button" onclick="clearForm()">Reset</button>
+</form>
+<script>
+    const value = "{{ form.username.value|default:'' }}".trim(); //Django + JS Context
+    // .trim() , start and end space remove
+    // .trimStart() , only start space
+    // .trimEnd() , only end space
+    // .replace(" ", "") , replace 
+
+    function clearForm() {
+        const form = document.getElementById("loginForm");
+        form.reset();
+    }
+
+    const submitBtn = document.getElementById("submitBtn");
+    function hide_login_btn() {
+        submitBtn.disabled = true;
+    }
+    function enable_login_btn() {
+            submitBtn.disabled = false;
+        }
+    // const form = document.getElementById("loginForm");
+
+    // form.addEventListener("submit", function (event) {
+    //     if (form.username.value.length !== 3) {
+    //         alert("Form submitted");
+    //         const formData = new FormData(form);
+
+    //         console.log(formData.get("username"));
+    //         console.log(formData.get("password"));
+    //     }else {
+    //         event.preventDefault();
+    //         alert("allow only vishnu");
+    //     }
+    // });
+</script>
+</center>
+{% endblock %}

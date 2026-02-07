@@ -1,0 +1,81 @@
+{% extends 'cbv/extends/base.html' %}
+
+{% block title %}Members Create{% endblock %}
+
+{% block style %}
+/* Hero Section / Page Header */
+.hero {
+text-align: center;
+padding: 50px 20px;
+background-color: #f2f2f2;
+margin-bottom: 30px;
+border-radius: 10px;
+}
+.hero h1 {
+font-size: 36px;
+color: #0A3D62;
+margin-bottom: 10px;
+}
+
+/* Form Container */
+.form-container {
+max-width: 600px;
+margin: 0 auto 50px auto;
+padding: 30px;
+background-color: #ffffff;
+border-radius: 10px;
+box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.form-container form {
+display: flex;
+flex-direction: column;
+gap: 15px;
+}
+
+.form-container form input,
+.form-container form select,
+.form-container form textarea {
+padding: 10px 15px;
+font-size: 16px;
+border-radius: 5px;
+border: 1px solid #ccc;
+width: 100%;
+box-sizing: border-box;
+}
+
+.form-container form button {
+padding: 12px 20px;
+background-color: #0A3D62;
+color: white;
+font-size: 16px;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+transition: 0.3s;
+}
+
+.form-container form button:hover {
+background-color: #08306b;
+}
+{% endblock %}
+
+{% block content %}
+{% include 'cbv/extends/navigationbar.html' %}
+<div class="hero">
+    <h1>Welcome to {{ title }} Page</h1>
+    <p>Fill in the form below to add a new member.</p>
+</div>
+
+<div class="form-container">
+    {% include 'cbv/extends/messages.html' %}
+    <form action="" method="post">
+        {% csrf_token %}
+        {% if form.password2.errors %}
+        <div class="error">{{ form.password2.errors }}</div>
+        {% endif %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>post page</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'kavi/bootstrap/css/bootstrap.min.css' %}">
+</head>
+
+<body>
+    <div class="well">
+        <center><h1>bootstrap file</h1></center>
+    </div>
+    <h1>hi, {{user.username}} welcome to our posts page.</h1>
+    {% for group in user.groups.all %}
+    <h3>user groups, {{group.name}}</h3>
+    {% endfor %}
+
+    {% if perms.kavi.add_movies %}
+    <a href="{% url 'kavi:add_post' %}">add post</a>
+    {% endif %}
+    
+    {% if post %}
+        {% for posts in post %}
+            {% if posts.is_published %}
+                <h2>published data</h2>
+                <div style="border: 3px solid black; text-align: center;">
+                    <h3>movie name: {{posts.movie_name}}</h3>
+                    <a href="{% url 'kavi:post_details' posts.id %}"
+                        style="padding: 3px; border-radius: 2px ; background-color: aqua; margin: 2px;">details</a>
+                    <a href="{% url 'kavi:post_edit' posts.id %}"
+                        style="padding: 3px; border-radius: 2px ; background-color: rgb(0, 255, 55);margin: 2px;">Edit</a>
+                    <button onclick="confirmbefordelete(`{% url 'kavi:post_delete' posts.id %}`)"
+                    style="padding: 3px; border-radius: 2px ; background-color: rgb(0, 255, 55);margin: 2px;">Delete</button>
+                </div>
+            {% else %}
+                <h2>unpublished data</h2>
+                <div style="border: 3px solid black; text-align: center;">
+                    <h3>movie name: {{posts.movie_name}}</h3>
+                    <a href="{% url 'kavi:post_details' posts.id %}"
+                        style="padding: 3px; border-radius: 2px ; background-color: aqua; margin: 2px;">details</a>
+                    <a href="{% url 'kavi:post_edit' posts.id %}"
+                        style="padding: 3px; border-radius: 2px ; background-color: rgb(0, 255, 55);margin: 2px;">Edit</a>
+                    <button onclick="confirmbefordelete(`{% url 'kavi:post_delete' posts.id %}`)"
+                    style="padding: 3px; border-radius: 2px ; background-color: rgb(0, 255, 55);margin: 2px;">Delete</button>
+                </div>
+            {% endif %}
+        {% empty %}
+            <h1>no movie list</h1>
+        {% endfor %}
+    {% endif %}
+    <script>
+        function confirmbefordelete(url) {
+            var userconfirm = confirm("Are you sure want to delete?")
+
+            if (userconfirm) {
+                window.location.href = url
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dad Detail</title>
+</head>
+<body>
+
+<h1>Dad Details</h1>
+
+<p><b>Name:</b> {{ dad.name }}</p>
+<p><b>Age:</b> {{ dad.age }}</p>
+<p><b>Salary:</b> ₹{{ dad.salary }}</p>
+<p><b>Marital Status:</b>
+    {% if dad.marrital_status %} Married {% else %} Not Married {% endif %}
+</p>
+<p><b>Alive:</b>
+    {% if dad.is_alive %} Yes {% else %} No {% endif %}
+</p>
+
+</body>
+</html>

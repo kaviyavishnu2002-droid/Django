@@ -1,0 +1,42 @@
+{% extends 'cbv/extends/base.html' %}
+
+{% block title %}All Members{% endblock %}
+
+{% block style %}
+table,
+th,
+td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 8px;
+}
+{% endblock %}
+
+{% block content %}
+{% include 'cbv/extends/navigationbar.html' %}
+{% include 'cbv/extends/messages.html' %}
+<div>
+    <center>
+        <table>
+            <thead>
+                <td>Age Group</td>
+                <td>About</td>
+                <td>Edit</td>
+                <td>Delete</td>
+            </thead>
+            <tbody>
+                {% if age_group %}
+                    {% for age in age_group %}
+                        <tr>
+                            <td>{{age.age_groups}}</td>
+                            <td>{{age.about}}</td>
+                            <td><a href="{% url 'cbv:age_edit' slug=age.slug %}">Edit</a></td>
+                            <td><a href="{% url 'cbv:age_delete' slug=age.slug %}">Delete</a></td>
+                        </tr>
+                    {% endfor %}
+                {% endif %}
+            </tbody>
+        </table>
+    </center>
+</div>
+{% endblock %}

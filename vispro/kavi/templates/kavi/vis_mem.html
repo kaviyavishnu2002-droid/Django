@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vis Members</title>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f4f4f4;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .card {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .card img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 2px solid #ddd;
+        }
+        .info {
+            flex: 1;
+        }
+        .label {
+            font-weight: bold;
+            color: #333;
+        }
+        .value {
+            margin-bottom: 8px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Vis Members <a href="{% url 'kavi:Vis_Create' %}">create</a></h1>
+<h3><a href="{% url 'kavi:vis_history' %}">vis History</a></h3>
+
+<!--<form action="" method="post">
+    {% csrf_token %}
+    <label for="name">category</label>
+    <input type="text" name="name" id="">
+    <button type="submit">submit</button>
+</form>
+
+<h4>created category: {{category}}</h4>
+ <h2>all categorys:</h2>
+
+{% for c in all_category %}
+    <h2>Category: {{ c.name }}</h2>
+
+    {% for m in c.movies_set.all %}
+        <h4>Movie Name: {{ m.movie_name }}</h4>
+        <p>Character: {{ m.movie_charecter }}</p>
+        <p>Content: {{ m.movie_content }}</p>
+        
+        {% if m.formatted_image %}
+            <img src="{{ m.formatted_image }}" width="200">
+        {% endif %}
+
+        <hr>
+    {% empty %}
+        <p>No movies in this category.</p>
+    {% endfor %}
+
+{% endfor %}
+
+<hr> -->
+{% if messages %}
+    {% for message in messages %}
+        <h3>{{message}}</h3>
+    {% endfor %}
+{% endif %}
+<h2>Members</h2>
+<p>Member Name:</p>
+{% for m in members %}
+    <a href="#{{m.id}}">{{m.name}}</a> <a href="{% url 'kavi:vis_delete' m.id %}">delete</a>, <br> 
+{% endfor %}
+<br><br><br>
+
+{% for m in members %}
+<div class="card" id="{{m.id}}">
+
+    <!-- Profile Image -->
+    {% if m.image %}
+        <img src="{{ m.image.url }}" alt="{{ m.name }}">
+    {% else %}
+        <img src="https://via.placeholder.com/150" alt="No Image">
+    {% endif %}
+
+    <div class="info">
+        <a href="{% url 'kavi:edit_member' m.id %}">Edit</a>
+        <a href="{% url 'kavi:vis_delete' m.id %}">delete</a>
+        <span class="label">Name:</span>
+        <span class="value">{{ m.name }}</span>
+
+        <span class="label">Age:</span>
+        <span class="value">{{ m.age }}</span>
+
+        <span class="label">Lucky Number:</span>
+        <span class="value">{{ m.get_lucky_number_display }}</span>
+
+        <span class="label">About:</span>
+        <span class="value">{{ m.about }}</span>
+
+        <span class="label">Phone:</span>
+        <span class="value">{{ m.phone }}</span>
+
+        <span class="label">Email:</span>
+        <span class="value">{{ m.email }}</span>
+
+        <span class="label">Website:</span>
+        <span class="value">
+            <a href="{{ m.web_site }}" target="_blank">{{ m.web_site }}</a>
+        </span>
+
+        <span class="label">Salary:</span>
+        <span class="value">{{ m.salary }}</span>
+
+        <span class="label">Status:</span>
+        <span class="value">{{ m.get_status_display }}</span>
+
+        <span class="label">Mother:</span>
+        <span class="value">{{ m.mother.name }}</span>
+
+        <span class="label">Father:</span>
+        <span class="value">{{ m.father.name }}</span>
+
+        <span class="label">Profile User:</span>
+        <span class="value">{{ m.profile.username }}</span>
+
+        <span class="label">Created At:</span>
+        <span class="value">{{ m.created_at }}</span>
+
+        <span class="label">UID:</span>
+        <span class="value">{{ m.uid }}</span>
+        {% if m.data %}
+        <span class="label">Data (JSON):</span>
+        <span class="value">{{ m.data }}</span>
+        {% endif %}
+        <span class="label">Created duration</span>
+        <span class="value">{{m.created_duration}}</span>
+
+        <span class="label">uploaded duration</span>
+        <span class="value">{{m.uploaded_duration}}</span>
+    </div>
+
+</div>
+{% empty %}
+<p>No members found.</p>
+{% endfor %}
+
+</body>
+</html>

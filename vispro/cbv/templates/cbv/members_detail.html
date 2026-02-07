@@ -1,0 +1,87 @@
+{% extends 'cbv/extends/base.html' %}
+
+{% block title %}Member Details{% endblock %}
+
+{% block style %}
+body {
+font-family: Arial, sans-serif;
+background: #f5f5f5;
+}
+.card {
+max-width: 600px;
+margin: 40px auto;
+background: #fff;
+padding: 20px;
+border-radius: 6px;
+box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+h2 {
+text-align: center;
+margin-bottom: 20px;
+}
+.row {
+margin-bottom: 10px;
+}
+.label {
+font-weight: bold;
+}
+{% endblock %}
+
+{% block content %}
+{% include 'cbv/extends/navigationbar.html' %}
+{% include 'cbv/extends/messages.html' %}
+
+<div class="card">
+    <h2>Detail Information</h2>
+
+    <div class="row">
+        <span class="label">Name:</span>
+        {{ detail.name }}
+    </div>
+
+    <div class="row">
+        <span class="label">Age:</span>
+        {{ object.age }}
+    </div>
+
+    <div class="row">
+        <span class="label">About:</span>
+        {{ object.about }}
+    </div>
+
+    <div class="row">
+        <span class="label">Phone:</span>
+        {{ object.phone }}
+    </div>
+
+    <div class="row">
+        <span class="label">Email:</span>
+        {{ object.email_id }}
+    </div>
+
+    <div class="row">
+        <span class="label">User Name:</span>
+        {{ object.user_name }}
+    </div>
+
+    <div class="row">
+        <span class="label">Age Range:</span>
+        {{ object.age_range }}
+    </div>
+
+    <div class="row">
+        <span class="label">Active Status:</span>
+        {% if object.is_active %}
+        Active
+        {% else %}
+        Inactive
+        {% endif %}
+    </div>
+
+    <div class="row">
+        <span class="label">Created By:</span>
+        {{ object.user.username }}
+    </div>
+
+</div>
+{% endblock %}

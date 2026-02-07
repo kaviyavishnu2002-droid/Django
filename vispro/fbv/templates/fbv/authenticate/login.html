@@ -1,0 +1,20 @@
+{% extends 'cbv/extends/base.html' %}
+{% load static %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'fbv/css/login.css' %}">
+{% endblock %}
+
+{% block content %}
+{% include 'cbv/extends/messages.html' %}
+
+<center>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+</center>
+{% endblock %}

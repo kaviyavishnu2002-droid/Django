@@ -1,0 +1,208 @@
+# for delete venv
+rmdir /s /q djangoproject
+
+# django modules
+
+(in validaters.py) --->
+import re
+from django.core.exceptions import ValidationError
+
+(in app.py) --->
+from django.apps import AppConfig
+
+(in backends.py) --->
+from django.contrib.auth.backends import ModelBackend
+from django.contrib.auth import get_user_model --> User = get_user_model()
+
+(in models.py) --->
+from django.db import models
+from django.core.validators import MaxLengthValidator, MinLengthValidator, RegexValidator
+from django.db.models import F
+from django.conf import settings
+from django.contrib.auth.models import AbstractUser
+from django.utils.translation import gettext_lazy as _
+from django.contrib.auth.models import UserManager
+from django.utils.text import slugify
+import uuid
+from django.core.exceptions import ValidationError
+from django.utils import timezone
+
+(in middleware.py) --->
+from django.urls import reverse
+from django.shortcuts import redirect
+from django.http import HttpResponse, HttpResponseForbidden
+from django.conf import settings
+
+(in forms.py) --->
+from django import forms
+from django.forms import formset_factory, modelformset_factory, inlineformset_factory
+from datetime import datetime
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib import messages
+from django.core.exceptions import ValidationError
+from django.contrib.auth.forms import AuthenticationForm
+from django.core.validators import MinLengthValidator, MaxLengthValidator
+from django.utils.translation import gettext_lazy
+
+(in signals.py) --->
+from django.db.models.signals import post_save, pre_save, post_delete, pre_delete, m2m_changed
+from django.dispatch import receiver
+from django.utils import timezone
+from django.contrib.auth import get_user_model
+import os
+from django.contrib.auth.models import Group,Permission
+
+(in urls.py) --->
+from django.contrib import admin --> (project urls.py)
+from django.urls import path, include --> (project urls.py)
+from django.urls import path
+from django.contrib.auth.views import (
+    LoginView, LogoutView, PasswordChangeView, PasswordChangeDoneView, PasswordResetView,
+    PasswordResetDoneView, PasswordResetConfirmView, PasswordResetCompleteView
+)
+
+(in pagination.py) --->
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
+(in admin.py) --->
+from django.contrib import admin
+from django.contrib.auth import get_user_model
+from django.contrib.auth.admin import UserAdmin
+
+(in settings.py) --->
+from pathlib import Path
+import os
+from datetime import timedelta
+
+(in views.py)--->
+from django.shortcuts import render, redirect, get_object_or_404
+from django.http import HttpResponse
+from django.contrib.auth import login, logout, authenticate
+from django.contrib import messages
+from .forms import (
+    Authentication_Form, Normal_LoginForm, 
+    Normal_Register_Form, Usercreation_Form
+)
+from kavi.models import Profile
+from django.contrib.auth.decorators import permission_required
+from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.models import Permission
+from django.contrib.auth.models import Group
+import json
+from django.http import JsonResponse
+from django.views.decorators.http import require_POST
+from cbv.forms import Register_Form
+from django.db import transaction
+import logging
+from django.core.exceptions import ValidationError
+from asgiref.sync import async_to_sync, sync_to_async
+import aiofiles
+import httpx
+from django.views.generic import CreateView,ListView, FormView, DetailView
+from django.views.generic.edit import UpdateView, DeleteView
+from django.views.generic import TemplateView
+from django.views import View
+from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib import messages
+from django.contrib.messages.views import SuccessMessageMixin
+from django.core.exceptions import PermissionDenied, ValidationError, PermissionDenied
+from django.contrib.auth.decorators import permission_required
+from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
+from django.http import HttpResponse, JsonResponse, HttpResponseForbidden
+from django.db.models import Max, Min, Avg, Count, Sum, F, Q, OuterRef, Subquery
+from django.contrib.auth import get_user_model  --> User = get_user_model()
+from django.contrib.auth.tokens import default_token_generator
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.utils.encoding import force_bytes
+from django.contrib.sites.shortcuts import get_current_site
+from django.template.loader import render_to_string
+from django.core.mail import send_mail
+from django.contrib.auth.models import Group
+
+(in api/views.py) --->
+"""DRF Common Methods"""
+from django.shortcuts import render, redirect
+from django.core.cache import cache
+from rest_framework.response import Response
+from rest_framework import status
+from rest_framework.exceptions import ValidationError, NotFound
+from django.utils import timezone
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.filters import SearchFilter, OrderingFilter
+from rest_framework.decorators import  throttle_classes
+from rest_framework.throttling import UserRateThrottle, AnonRateThrottle, ScopedRateThrottle
+
+"""authentication and authorization"""
+from rest_framework.permissions import (
+    AllowAny, IsAuthenticated, IsAdminUser, 
+    IsAuthenticatedOrReadOnly, DjangoModelPermissions,
+    DjangoModelPermissionsOrAnonReadOnly,
+    DjangoObjectPermissions, SAFE_METHODS,
+    BasePermission
+)
+from rest_framework.authentication import SessionAuthentication, TokenAuthentication
+from rest_framework_simplejwt.authentication import JWTAuthentication
+from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework.authtoken.models import Token
+from django.contrib.auth import get_user_model
+from django.contrib.auth import authenticate, login, logout
+from django.views.decorators.csrf import csrf_exempt
+
+User = get_user_model()
+
+"""Methods"""
+from rest_framework.decorators import api_view, action, permission_classes
+from rest_framework import generics
+from rest_framework.views import APIView
+from rest_framework.generics import (
+    GenericAPIView,ListAPIView,CreateAPIView,RetrieveAPIView,UpdateAPIView,
+    DestroyAPIView,ListCreateAPIView,RetrieveUpdateAPIView,RetrieveDestroyAPIView,
+    RetrieveUpdateDestroyAPIView
+)
+from rest_framework.viewsets import ViewSet,ModelViewSet, ReadOnlyModelViewSet, GenericViewSet
+from rest_framework import mixins
+from django.views.decorators.cache import cache_page
+from django.utils.decorators import method_decorator
+
+(in api/validation.py) --->
+from rest_framework import serializers
+
+(in api/backends.py) --->
+from django.contrib.auth.backends import ModelBackend
+
+(in api/pagination.py) --->
+from rest_framework.pagination import PageNumberPagination
+from rest_framework.response import Response
+import math
+
+(in api/permissions.py) --->
+from rest_framework.permissions import BasePermission, SAFE_METHODS
+
+(in api/serializers.py) --->
+from rest_framework import serializers
+
+(in api/throttle.py) --->
+from rest_framework.throttling import BaseThrottle
+from rest_framework.throttling import UserRateThrottle
+import time
+from rest_framework.response import Response
+
+(in api/urls.py) --->
+from rest_framework.routers import DefaultRouter
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
+from rest_framework.authtoken.views import obtain_auth_token
+from drf_spectacular.views import (
+    SpectacularAPIView,
+    SpectacularSwaggerView,
+    SpectacularRedocView,
+)
+
+(in api/utils.py) --->
+from rest_framework.response import Response
+from rest_framework.views import exception_handler
+from rest_framework import status

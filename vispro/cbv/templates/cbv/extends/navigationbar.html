@@ -1,0 +1,427 @@
+<nav style="
+        background-color: #0A3D62;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 40px;
+    ">
+
+    <!-- Logo -->
+    <div style="
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+        ">
+        My Website
+    </div>
+
+    <!-- Links -->
+    {% with url_name=request.resolver_match.url_name %}
+    <ul style="
+            list-style: none;
+            display: flex;
+            gap: 25px;
+            margin: 0;
+            padding: 0;
+        ">
+
+        {% if url_name != 'home' %}
+        <li><a href="{% url 'cbv:home' %}" style="
+                text-decoration: none;
+                color: white;
+                font-size: 18px;
+                padding: 8px 12px;
+                border-radius: 5px;
+            ">Home</a></li>
+        {% endif %}
+
+        {% if request.path != '/member_form' %}
+        <li><a href="{% url 'cbv:member_form' %}" style="
+                text-decoration: none;
+                color: white;
+                font-size: 18px;
+                padding: 8px 12px;
+                border-radius: 5px;
+            ">Members Form</a></li>
+        {% endif %}
+
+        {% if url_name != 'members_list' %}
+        <li><a href="{% url 'cbv:members_list' %}" style="
+                text-decoration: none;
+                color: white;
+                font-size: 18px;
+                padding: 8px 12px;
+                border-radius: 5px;
+            ">All Members</a></li>
+        {% endif %}
+        {% if url_name != 'age_create' %}
+        <li><a href="{% url 'cbv:age_create' %}" style="
+                text-decoration: none;
+                color: white;
+                font-size: 18px;
+                padding: 8px 12px;
+                border-radius: 5px;
+            ">Create Age</a></li>
+        {% endif %}
+        {% if url_name != 'age_list' %}
+        <li><a href="{% url 'cbv:age_list' %}" style="
+                text-decoration: none;
+                color: white;
+                font-size: 18px;
+                padding: 8px 12px;
+                border-radius: 5px;
+            ">Age List</a></li>
+        {% endif %}
+        {% if url_name != 'cbv:login_cbv' %}
+        <li><a href="{% url 'cbv:login_cbv' %}" style="
+                text-decoration: none;
+                color: white;
+                font-size: 18px;
+                padding: 8px 12px;
+                border-radius: 5px;
+            ">Login Cbv</a></li>
+        {% endif %}
+        {% if user.is_authenticated %}
+        <li><a href="{% url 'cbv:remove_user' user.pk %}" style="
+                text-decoration: none;
+                color: white;
+                font-size: 18px;
+                padding: 8px 12px;
+                border-radius: 5px;
+            ">Remove User Cbv</a></li>
+        {% endif %}
+        {% if url_name != 'fbv:logout_fbv' %}
+        <li><a href="{% url 'fbv:logout_fbv' %}" style="
+                text-decoration: none;
+                color: white;
+                font-size: 18px;
+                padding: 8px 12px;
+                border-radius: 5px;
+            ">Logout FBV</a></li>
+        {% endif %}
+        {% if url_name != 'fbv:login_fbv' %}
+        <li><a href="{% url 'fbv:login_fbv' %}" style="
+                text-decoration: none;
+                color: white;
+                font-size: 18px;
+                padding: 8px 12px;
+                border-radius: 5px;
+            ">Login FBV</a></li>
+        {% endif %}
+        {% if url_name != 'fbv:home' %}
+        <li><a href="{% url 'fbv:home' %}" style="
+                text-decoration: none;
+                color: white;
+                font-size: 18px;
+                padding: 8px 12px;
+                border-radius: 5px;
+            ">Home FBV</a></li>
+        {% endif %}
+        <form action="{% url 'cbv:logout_cbv' %}" method="post" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit">Logout</button>
+        </form>
+        {% if url_name != 'cbv:get_post' %}
+        <li><a href="{% url 'cbv:get_post' %}" style="
+                text-decoration: none;
+                color: white;
+                font-size: 18px;
+                padding: 8px 12px;
+                border-radius: 5px;
+            ">Get Post</a></li>
+        {% endif %}
+        {% if url_name != 'cbv:register_cbv' %}
+        <li><a href="{% url 'cbv:register_cbv' %}" style="
+                text-decoration: none;
+                color: white;
+                font-size: 18px;
+                padding: 8px 12px;
+                border-radius: 5px;
+            ">Register</a></li>
+        {% endif %}
+        {% if url_name != 'fbv:register_fbv' %}
+        <li><a href="{% url 'fbv:register_fbv' %}" style="
+                text-decoration: none;
+                color: white;
+                font-size: 18px;
+                padding: 8px 12px;
+                border-radius: 5px;
+            ">Register FBV</a></li>
+        {% endif %}
+        {% if url_name != 'cbv:profileupdate' %}
+        <li><a href="{% url 'cbv:profileupdate' %}" style="
+                text-decoration: none;
+                color: white;
+                font-size: 18px;
+                padding: 8px 12px;
+                border-radius: 5px;
+            ">Profile Update</a></li>
+        {% endif %}
+        {% if url_name != '/admin/' %}
+        <li><a href="/admin/" style="
+                text-decoration: none;
+                color: white;
+                font-size: 18px;
+                padding: 8px 12px;
+                border-radius: 5px;
+            ">Admin Panal</a></li>
+        {% endif %}
+        {% endwith %}
+</nav>
+
+<nav style="
+        background-color: #0A3D62;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 40px;
+    ">
+
+    <!-- Logo -->
+    <div style="
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+        ">
+        My API Views
+    </div>
+
+    <!-- Links -->
+    {% with url_name=request.resolver_match.url_name %}
+    <ul style="
+            list-style: none;
+            display: flex;
+            gap: 25px;
+            margin: 0;
+            padding: 0;
+        ">
+
+        {% if url_name != 'apihome' %}
+        <li><a href="{% url 'api:apihome' %}" style="
+                text-decoration: none;
+                color: white;
+                font-size: 18px;
+                padding: 8px 12px;
+                border-radius: 5px;
+            ">API Home</a></li>
+        {% endif %}
+
+        {% if url_name != 'detailgenericsview' %}
+        <li><a href="{% url 'api:detailgenericsview' %}" style="
+                text-decoration: none;
+                color: white;
+                font-size: 18px;
+                padding: 8px 12px;
+                border-radius: 5px;
+            ">All Members from API</a></li>
+        {% endif %}
+        {% if url_name != 'fbv:login_page' %}
+        <li><a href="{% url 'fbv:login_page' %}" style="
+                text-decoration: none;
+                color: white;
+                font-size: 18px;
+                padding: 8px 12px;
+                border-radius: 5px;
+            ">Login</a></li>
+        {% endif %}
+        {% if url_name != 'api:logingenericapiview' %}
+        <li><a href="{% url 'api:logingenericapiview' %}" style="
+                text-decoration: none;
+                color: white;
+                font-size: 18px;
+                padding: 8px 12px;
+                border-radius: 5px;
+            ">login generic api view</a></li>
+        {% endif %}
+        {% if url_name != 'fbv:login_fbv' %}
+        <li><a href="{% url 'fbv:login_fbv' %}" style="
+                text-decoration: none;
+                color: white;
+                font-size: 18px;
+                padding: 8px 12px;
+                border-radius: 5px;
+            ">Login FBV</a></li>
+        {% endif %}
+        {% if url_name != 'fbv:home' %}
+        <li><a href="{% url 'fbv:home' %}" style="
+                text-decoration: none;
+                color: white;
+                font-size: 18px;
+                padding: 8px 12px;
+                border-radius: 5px;
+            ">Home FBV</a></li>
+        {% endif %}
+        {% if url_name != 'cbv:get_post' %}
+        <li><a href="{% url 'cbv:get_post' %}" style="
+                text-decoration: none;
+                color: white;
+                font-size: 18px;
+                padding: 8px 12px;
+                border-radius: 5px;
+            ">Get Post</a></li>
+        {% endif %}
+        {% if url_name != 'fbv:register_fbv' %}
+        <li><a href="{% url 'fbv:register_fbv' %}" style="
+                text-decoration: none;
+                color: white;
+                font-size: 18px;
+                padding: 8px 12px;
+                border-radius: 5px;
+            ">Register FBV</a></li>
+        {% endif %}
+        {% endwith %}
+</nav>
+
+<nav style="
+        background-color: #0A3D62;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 40px;
+    ">
+
+    <!-- Logo -->
+    <div style="
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+        ">
+        My Website
+    </div>
+
+    <!-- Links -->
+    {% with url_name=request.resolver_match.url_name %}
+    <ul style="
+            list-style: none;
+            display: flex;
+            gap: 25px;
+            margin: 0;
+            padding: 0;
+        ">
+
+        {% if url_name != 'fbv:home' %}
+        <li><a href="{% url 'fbv:home' %}" style="
+                text-decoration: none;
+                color: white;
+                font-size: 18px;
+                padding: 8px 12px;
+                border-radius: 5px;
+            ">FBV Home</a></li>
+        {% endif %}
+
+        {% if url_name != 'fbv:js' %}
+        <li><a href="{% url 'fbv:js' %}" style="
+                text-decoration: none;
+                color: white;
+                font-size: 18px;
+                padding: 8px 12px;
+                border-radius: 5px;
+            ">FBV js</a></li>
+        {% endif %}
+
+        {% if url_name != 'fbv:js2' %}
+        <li><a href="{% url 'fbv:js2' %}" style="
+                text-decoration: none;
+                color: white;
+                font-size: 18px;
+                padding: 8px 12px;
+                border-radius: 5px;
+            ">FBV js2</a></li>
+        {% endif %}
+
+        {% if url_name != 'fbv:js3' %}
+        <li><a href="{% url 'fbv:js3' %}" style="
+                text-decoration: none;
+                color: white;
+                font-size: 18px;
+                padding: 8px 12px;
+                border-radius: 5px;
+            ">FBV js3</a></li>
+        {% endif %}
+        {% if url_name != 'age_create' %}
+        <li><a href="{% url 'cbv:age_create' %}" style="
+                text-decoration: none;
+                color: white;
+                font-size: 18px;
+                padding: 8px 12px;
+                border-radius: 5px;
+            ">Create Age</a></li>
+        {% endif %}
+        {% if url_name != 'age_list' %}
+        <li><a href="{% url 'cbv:age_list' %}" style="
+                text-decoration: none;
+                color: white;
+                font-size: 18px;
+                padding: 8px 12px;
+                border-radius: 5px;
+            ">Age List</a></li>
+        {% endif %}
+        {% if url_name != 'fbv:logout_fbv' %}
+        <li><a href="{% url 'fbv:logout_fbv' %}" style="
+                text-decoration: none;
+                color: white;
+                font-size: 18px;
+                padding: 8px 12px;
+                border-radius: 5px;
+            ">Logout FBV</a></li>
+        {% endif %}
+        {% if url_name != 'fbv:login_fbv' %}
+        <li><a href="{% url 'fbv:login_fbv' %}" style="
+                text-decoration: none;
+                color: white;
+                font-size: 18px;
+                padding: 8px 12px;
+                border-radius: 5px;
+            ">Login FBV</a></li>
+        {% endif %}
+        {% if url_name != 'fbv:home' %}
+        <li><a href="{% url 'fbv:home' %}" style="
+                text-decoration: none;
+                color: white;
+                font-size: 18px;
+                padding: 8px 12px;
+                border-radius: 5px;
+            ">Home FBV</a></li>
+        {% endif %}
+        <form action="{% url 'cbv:logout_cbv' %}" method="post" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit">Logout</button>
+        </form>
+        {% if url_name != 'cbv:get_post' %}
+        <li><a href="{% url 'cbv:get_post' %}" style="
+                text-decoration: none;
+                color: white;
+                font-size: 18px;
+                padding: 8px 12px;
+                border-radius: 5px;
+            ">Get Post</a></li>
+        {% endif %}
+        {% if url_name != 'fbv:register_fbv' %}
+        <li><a href="{% url 'fbv:register_fbv' %}" style="
+                text-decoration: none;
+                color: white;
+                font-size: 18px;
+                padding: 8px 12px;
+                border-radius: 5px;
+            ">Register FBV</a></li>
+        {% endif %}
+        {% if url_name != 'cbv:profileupdate' %}
+        <li><a href="{% url 'cbv:profileupdate' %}" style="
+                text-decoration: none;
+                color: white;
+                font-size: 18px;
+                padding: 8px 12px;
+                border-radius: 5px;
+            ">Profile Update</a></li>
+        {% endif %}
+        {% if url_name != '/admin/' %}
+        <li><a href="/admin/" style="
+                text-decoration: none;
+                color: white;
+                font-size: 18px;
+                padding: 8px 12px;
+                border-radius: 5px;
+            ">Admin Panal</a></li>
+        {% endif %}
+        {% endwith %}
+</nav>

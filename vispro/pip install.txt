@@ -1,0 +1,9 @@
+python.exe -m pip install --upgrade pip
+python -m pip list
+
+python -m pip install mysql-connector-python
+python -m pip install mysqlclient
+python -m pip install djangorestframework
+python -m pip install djangorestframework-simplejwt
+python -m pip install django-filter
+python -m pip install drf-spectacular

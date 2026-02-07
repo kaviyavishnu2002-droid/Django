@@ -1,0 +1,115 @@
+{% extends 'cbv/extends/base.html' %}
+
+{% block title %}All Members{% endblock %}
+
+{% block style %}
+table,
+th,
+td {
+border: 1px solid black;
+border-collapse: collapse;
+padding: 8px;
+}
+{% endblock %}
+
+{% block content %}
+{% include 'cbv/extends/navigationbar.html' %}
+{% include 'cbv/extends/messages.html' %}
+<div>
+    <form action="" method="get">
+        {% csrf_token %}
+        <input type="text" name="name" placeholder="enter search name">
+        <button type="submit">Submit</button>
+
+
+    </form>
+    <center>
+        <h1><a href="{% url 'cbv:member_form' %}">Create Members</a></h1>
+        {% if user.is_authenticated %}
+        <h2>it's authenticated</h2>
+        {% else %}
+        <h2>not authenticated</h2>
+        {% endif %}
+        <h3>{{middleware_custom_value}}</h3>
+        <table border="">
+            <thead>
+                <td>S.NO</td>
+                <td><button type="submit" name="order" value="name">Name</button></td>
+                <td><button type="submit" name="order" value="age">Age</button></td>
+                <td>Active</td>
+                <td>user</td>
+                <td>Grade</td>
+                <td>later for ten years</td>
+                <td>validate age</td>
+                <td>Edit</td>
+                <td>Delete</td>
+                <td>Detail</td>
+            </thead>
+            <tbody>
+                {% if Members %}
+                {% for member in Members %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{member.name}}</td>
+                    <td>{{member.age}}</td>
+                    <td><a href="/memberviewset2/{{member.id}}/approve/">{{member.is_active}}</a></td>
+                    <td>{{member.user}}</td>
+                    <td>{{member.grade}}</td>
+                    <td>{{member.later_for_10years}}</td>
+                    <td>{{member.validate_age}}</td>
+                    <td><a href="{% url 'cbv:member_edit' member.slug %}">Edit</a></td>
+                    <td><a href="{% url 'cbv:member_delete' member.slug %}">Delete</a></td>
+                    <td><a href="{% url 'cbv:member_detail' member.slug %}">Detail</a></td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="14" style="text-align:center;">No members found</td>
+                </tr>
+                {% endfor %}
+                {% endif %}
+            </tbody>
+        </table>
+    </center>
+</div>
+<div>
+    {% if item %}
+        {% for i in item %}
+            <p>item: {{i.name}}</p>
+        {% endfor %}
+    {% endif %}
+</div>
+<div>
+    {% if book %}
+        {% for b in book %}
+            <p>book: {{b.item_ptr.name}}</p>
+            <p>book: {{b.author}}</p>
+        {% endfor %}
+    {% endif %}
+</div>
+<div>
+    {% if aggre %}
+        <h3>age{{aggre.max_age}}</h3>
+    {% endif %}
+</div>
+<div>
+    {% if anno %}
+        {% for an in anno %}
+            <h3>ageten{{an.ageten}}</h3>
+        {% endfor %}
+    {% endif %}
+</div>
+<div>
+    {% if annoage %}
+        {% for an in annoage %}
+            <h3>an.grade{{an.totalage}}</h3>
+        {% endfor %}
+    {% endif %}
+</div>
+<div>
+    {% if qset %}
+        {% for an in qset %}
+            <h3>qset{{an}}</h3>
+        {% endfor %}
+    {% endif %}
+</div>
+{% endblock %}

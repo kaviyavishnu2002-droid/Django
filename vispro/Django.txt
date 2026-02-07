@@ -1,0 +1,11 @@
+# for delete venv
+rmdir /s /q djangoproject
+
+# create venv
+python -m venv <env-name>
+<env-name>\Scripts\activate
+python -m pip install django
+python -m django --version
+python -m django startproject <project-name>
+code .  (go to vscode)
+python manage.py startapp <app-name>

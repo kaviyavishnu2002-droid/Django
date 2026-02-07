@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vis history</title>
+</head>
+<body>
+    <h1>vis history</h1>
+    {% if history %}
+        {% for h in history %}
+            <h3 style="padding-bottom: 2px;">{{h.about_creation}}</h3>
+        {% endfor %}
+    {% endif %}
+</body>
+</html>

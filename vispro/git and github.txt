@@ -1,0 +1,24 @@
+# install git
+1. search git download and download for windows
+2. open command prompt and type git plus enter (for checking git install)
+3. Then, git config --global user.name "<your github user name>" (enter)
+         git config --global user.email "<your github email>" (enter)
+4. open, github repository and click "code" and copy that link
+5. Now, open vs code's command terminal,
+        git clone <that link> (for clone from github to vs code)
+6. git status
+   git branch
+7. pull files, (if modifiy in github)
+   * git pull (simple way)
+   # (Why --rebase ? It keeps your history clean and avoids unnecessary merge commits.)
+   * git pull origin main  (or)  git pull origin main --rebase
+   * git checkout origin/main -- <filename>  (one file from GitHub)
+8. push file, (if modifiy in vs code)
+   * git add <new_file> (or add all files) git add .
+   * git commit -m "<any commit message>"
+   * git push origin main
+9. git init
+   git remote add origin <new_repositeriy_link>
+   
+10. git branch -M <new_branch_name>  # (for change branch name)
+11. 

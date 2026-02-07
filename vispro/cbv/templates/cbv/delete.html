@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Confirm Delete{% endblock %}
+
+{% block content %}
+<div style="max-width: 600px; margin: 50px auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px; background-color: #f9f9f9;">
+    <h2 style="text-align: center; color: #d9534f;">Confirm Delete</h2>
+    <p style="text-align: center;">Are you sure you want to delete <strong>{{ object }}</strong>?</p>
+
+    <form method="post" style="text-align: center;">
+        {% csrf_token %}
+        <button type="submit" style="background-color: #d9534f; color: white; border: none; padding: 10px 20px; border-radius: 5px; margin-right: 10px;">Yes, Delete</button>
+        <a href="{% url request.META.HTTP_REFERER %}" style="background-color: #5bc0de; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none;">Cancel</a>
+    </form>
+</div>
+{% endblock %}

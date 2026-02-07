@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{post.movie_name}} details</title>
+</head>
+
+<body>
+    <h1>welcome to post detail page. ID: {{post.id}} and user ID: {{post.user.id}}.</h1>
+    <a href="{% url 'kavi:posts' %}">posts</a>
+    {% if post %}
+        <a href="{% url 'kavi:post_edit' post.id %}">Edit</a>
+        <button onclick="confirmbefordelete(`{% url 'kavi:post_delete' post.id %}`)" 
+        style="padding: 3px; border-radius: 2px ; background-color: rgb(0, 255, 55);margin: 2px;">Delete</button>
+        <div>
+            <h4>movie name: {{post.movie_name}}</h4>
+        </div>
+        <div>
+            <h4>movie charecter name: {{post.movie_charecter}}</h4>
+        </div>
+        <div>
+            <h4>movie content: {{post.movie_content}}</h4>
+        </div>
+        <div>
+            <img src="{{ post.formatted_image }}" alt="image" width="300px" height="500px">
+        </div>
+    {% endif %}
+    <script>
+        function confirmbefordelete(url) {
+            var userconfirm = confirm("Are you sure want to delete?")
+
+            if (userconfirm) {
+                window.location.href = url
+            }
+        }
+    </script>
+</body>
+</html>

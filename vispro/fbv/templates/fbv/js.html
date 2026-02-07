@@ -1,0 +1,86 @@
+{% extends 'cbv/extends/base.html' %}
+{% load static %}
+{% block title %}{{ title }}{% endblock %}
+
+{% block style %}
+<style>
+    /* Hero Section */
+    .hero {
+        text-align: center;
+        padding: 80px 20px;
+        background-color: #f2f2f2;
+        border-radius: 10px;
+        margin: 30px auto;
+        max-width: 1000px;
+    }
+
+    .hero h1 {
+        font-size: 40px;
+        color: #0A3D62;
+        margin-bottom: 20px;
+    }
+
+    .hero p {
+        font-size: 18px;
+        color: #555;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+{% include 'cbv/extends/messages.html' %}
+<center>
+    <h1 id="title">{{title}}</h1>
+    <div class="hero">
+        <h1 id="welcome">Welcome all</h1>
+        <p class="content">Explore the page and enjoy the content!</p>
+    </div>
+    <h1 class="username">username: {{user.username}}</h1>
+    <button onclick="reload()">js reload</button>
+
+    <button onclick="stop_home()">js stop_home</button>
+
+    <button onclick="go_home()">js go_home</button>
+
+    <button onclick="redi_login()">js redirect login cbv</button>
+
+    <button onclick="name_prompt()">js name prompt</button>
+
+    <button onclick="age_prompt()">js age prompt</button>
+
+    <button onclick="permission()">js permission</button>
+
+    <button onclick="redi_login()">js redirect login cbv</button>
+
+    <button type="button" id="redi_login">js redirect login</button>
+
+    <button type="button" onclick="Uservalidation()">User Validation</button>
+
+    <form action="" id="form">
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name">
+
+        <button onclick="check_name()" type="button" id="submit">Check name</button>
+    </form>
+    <h4 id="idname">this is id name</h4>
+    <div id="box">
+        <p>vis is the best</p>
+    </div>
+    <img src="https://upload.wikimedia.org/wikipedia/en/0/02/Iron_Man_%282008_film%29_poster.jpg" alt="">
+    <div class="container">
+        <h4 class="item">adding element at specific positions</h4>
+    </div>
+    <form action="" id="formsub">
+        <input type="text" name="name" id="name2">
+        <button id="btn" type="submit">Add event listener</button>
+    </form>
+</center>
+<ul>
+    <li>vis</li>
+    <li>kavi</li>
+    <li>raj</li>
+    <li>madha</li>
+    <li>kum</li>
+</ul>
+<script src="{% static 'fbv/js/vis.js' %}"></script>
+{% endblock %}
