@@ -1,0 +1,485 @@
+
+# ✅ 1. `makemigrations`
+
+### ➤ Command
+
+```bash
+python manage.py makemigrations
+```
+
+### ➤ Use
+
+Creates migration files based on model changes.
+
+### ➤ What it does
+
+It compares:
+
+👉 current models
+vs
+👉 previous migrations
+
+and generates new migration files.
+
+### ➤ Example
+
+```bash
+python manage.py makemigrations
+```
+
+After changing a model:
+
+```python
+class Book(models.Model):
+    title = models.CharField(max_length=200)
+```
+
+Django creates:
+
+```
+0002_add_title_field.py
+```
+
+---
+
+# ✅ 2. `makemigrations <app_name>`
+
+### ➤ Command
+
+```bash
+python manage.py makemigrations blog
+```
+
+### ➤ Use
+
+Create migrations for only one app.
+
+### ➤ Example
+
+```bash
+python manage.py makemigrations accounts
+```
+
+---
+
+# ✅ 3. `makemigrations --name`
+
+### ➤ Command
+
+```bash
+python manage.py makemigrations blog --name add_price_field
+```
+
+### ➤ Use
+
+Give a custom name to the migration.
+
+---
+
+# ✅ 4. `makemigrations --empty`
+
+### ➤ Command
+
+```bash
+python manage.py makemigrations blog --empty
+```
+
+### ➤ Use
+
+Create an empty migration.
+
+### ➤ Why needed
+
+When you want to write:
+
+* custom data migration
+* RunPython
+* RunSQL
+
+### ➤ Example
+
+```bash
+python manage.py makemigrations blog --empty --name insert_default_data
+```
+
+---
+
+# ✅ 5. `makemigrations --merge`
+
+### ➤ Command
+
+```bash
+python manage.py makemigrations --merge
+```
+
+### ➤ Use
+
+Fix migration conflicts.
+
+### ➤ When?
+
+When two developers create migrations in parallel.
+
+---
+
+# ✅ 6. `migrate`
+
+### ➤ Command
+
+```bash
+python manage.py migrate
+```
+
+### ➤ Use
+
+Apply all unapplied migrations to the database.
+
+### ➤ Example
+
+After `makemigrations`:
+
+```bash
+python manage.py migrate
+```
+
+---
+
+# ✅ 7. `migrate <app_name>`
+
+### ➤ Command
+
+```bash
+python manage.py migrate blog
+```
+
+### ➤ Use
+
+Apply migrations only for one app.
+
+---
+
+# ✅ 8. `migrate <app> <migration_number>`
+
+### ➤ Command
+
+```bash
+python manage.py migrate blog 0003
+```
+
+### ➤ Use
+
+Move database to a specific migration state.
+
+---
+
+# ✅ 9. Rollback migration
+
+### ➤ Command
+
+```bash
+python manage.py migrate blog 0002
+```
+
+### ➤ Use
+
+Rollback from 0003 to 0002.
+
+---
+
+# ✅ 10. Migrate app to ZERO
+
+### ➤ Command
+
+```bash
+python manage.py migrate blog zero
+```
+
+### ➤ Use
+
+Remove all tables of that app.
+
+⚠ Very dangerous in production.
+
+---
+
+# ✅ 11. `showmigrations`
+
+### ➤ Command
+
+```bash
+python manage.py showmigrations
+```
+
+### ➤ Use
+
+Show all migrations and their applied status.
+
+---
+
+# ✅ 12. `showmigrations <app>`
+
+### ➤ Command
+
+```bash
+python manage.py showmigrations blog
+```
+
+---
+
+# ✅ 13. `showmigrations --list`
+
+### ➤ Command
+
+```bash
+python manage.py showmigrations --list
+```
+
+(Shows applied and unapplied clearly)
+
+---
+
+# ✅ 14. `sqlmigrate`
+
+### ➤ Command
+
+```bash
+python manage.py sqlmigrate blog 0001
+```
+
+### ➤ Use
+
+See the SQL Django will execute.
+
+### ➤ Example
+
+```bash
+python manage.py sqlmigrate accounts 0002
+```
+
+Very useful for:
+
+* debugging
+* learning what Django really runs
+
+---
+
+# ✅ 15. `migrate --plan`
+
+### ➤ Command
+
+```bash
+python manage.py migrate --plan
+```
+
+### ➤ Use
+
+Preview which migrations will run.
+
+No database changes.
+
+---
+
+# ✅ 16. `migrate --fake`
+
+### ➤ Command
+
+```bash
+python manage.py migrate blog 0004 --fake
+```
+
+### ➤ Use
+
+Mark migration as applied without executing SQL.
+
+### ➤ When used?
+
+When DB is already manually updated.
+
+---
+
+# ✅ 17. `migrate --fake-initial`
+
+### ➤ Command
+
+```bash
+python manage.py migrate --fake-initial
+```
+
+### ➤ Use
+
+When tables already exist and you are introducing Django migrations for the first time.
+
+Very common when:
+
+* connecting Django to existing DB
+
+---
+
+# ✅ 18. `migrate --database`
+
+### ➤ Command
+
+```bash
+python manage.py migrate --database=replica
+```
+
+### ➤ Use
+
+Apply migrations to a specific database (multi-DB projects).
+
+---
+
+# ✅ 19. `migrate --run-syncdb`
+
+### ➤ Command
+
+```bash
+python manage.py migrate --run-syncdb
+```
+
+### ➤ Use
+
+Create tables for apps that do not have migrations.
+
+(rare but useful in legacy projects)
+
+---
+
+# ✅ 20. `squashmigrations`
+
+### ➤ Command
+
+```bash
+python manage.py squashmigrations blog 0001 0012
+```
+
+### ➤ Use
+
+Combine many migrations into one.
+
+### ➤ Why?
+
+For:
+
+* performance
+* cleaner history
+* production maintenance
+
+---
+
+# ✅ 21. `makemigrations --check`
+
+### ➤ Command
+
+```bash
+python manage.py makemigrations --check
+```
+
+### ➤ Use
+
+Check if there are model changes that are not migrated.
+
+Used in CI / pipeline.
+
+---
+
+# ✅ 22. `makemigrations --dry-run`
+
+### ➤ Command
+
+```bash
+python manage.py makemigrations --dry-run
+```
+
+### ➤ Use
+
+Show what would be created — without creating files.
+
+---
+
+# ✅ 23. `migrate --verbosity`
+
+### ➤ Command
+
+```bash
+python manage.py migrate --verbosity 3
+```
+
+### ➤ Use
+
+Control output detail.
+
+---
+
+# ✅ 24. `migrate --noinput`
+
+### ➤ Command
+
+```bash
+python manage.py migrate --noinput
+```
+
+### ➤ Use
+
+Run migrations without interactive prompts (CI/CD).
+
+---
+
+# 🧠 Very important real-world flow (remember this)
+
+👉 After changing models
+
+```
+makemigrations
+migrate
+```
+
+Always.
+
+---
+
+# 🧠 Important rules (Django interview level)
+
+### ✔ Never edit a migration that is already applied in production.
+
+### ✔ Never delete migrations blindly.
+
+### ✔ Always check:
+
+```bash
+python manage.py showmigrations
+```
+
+before rollback.
+
+---
+
+# ✅ Quick summary table
+
+| Command                  | Purpose                  |
+| ------------------------ | ------------------------ |
+| makemigrations           | create migration files   |
+| makemigrations app       | only one app             |
+| makemigrations --empty   | manual migration         |
+| makemigrations --merge   | resolve conflicts        |
+| migrate                  | apply migrations         |
+| migrate app              | apply only app           |
+| migrate app 000X         | go to specific state     |
+| migrate app zero         | delete all tables of app |
+| showmigrations           | view status              |
+| sqlmigrate               | show SQL                 |
+| migrate --plan           | preview                  |
+| migrate --fake           | mark as applied          |
+| migrate --fake-initial   | existing tables          |
+| migrate --database       | multi DB                 |
+| migrate --run-syncdb     | no-migration apps        |
+| squashmigrations         | merge migrations         |
+| makemigrations --check   | CI safety                |
+| makemigrations --dry-run | preview only             |
+
+---
+
+👉 Next, if you want, I can teach you:
+
+**How Django internally tracks migrations using the `django_migrations` table**
+(very important for your backend interview preparation).

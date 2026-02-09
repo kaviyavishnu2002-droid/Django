@@ -1,0 +1,45 @@
+python manage.py makemigrations
+python manage.py makemigrations blog
+python manage.py makemigrations blog --name add_price_field
+python manage.py makemigrations blog --empty
+python manage.py makemigrations --merge
+python manage.py migrate
+python manage.py migrate blog
+python manage.py migrate blog 0003
+python manage.py migrate blog zero
+python manage.py showmigrations
+python manage.py showmigrations blog
+python manage.py showmigrations --list
+python manage.py sqlmigrate blog 0001
+python manage.py sqlmigrate accounts 0002
+python manage.py migrate --plan
+python manage.py migrate blog 0004 --fake
+python manage.py migrate --fake-initial
+python manage.py migrate --database=replica
+python manage.py migrate --run-syncdb
+python manage.py squashmigrations blog 0001 0012
+python manage.py makemigrations --check
+python manage.py makemigrations --dry-run
+python manage.py migrate --verbosity 3
+python manage.py migrate --noinput
+
+| Command                  | Purpose                  |
+| ------------------------ | ------------------------ |
+| makemigrations           | create migration files   |
+| makemigrations app       | only one app             |
+| makemigrations --empty   | manual migration         |
+| makemigrations --merge   | resolve conflicts        |
+| migrate                  | apply migrations         |
+| migrate app              | apply only app           |
+| migrate app 000X         | go to specific state     |
+| migrate app zero         | delete all tables of app |
+| showmigrations           | view status              |
+| sqlmigrate               | show SQL                 |
+| migrate --plan           | preview                  |
+| migrate --fake           | mark as applied          |
+| migrate --fake-initial   | existing tables          |
+| migrate --database       | multi DB                 |
+| migrate --run-syncdb     | no-migration apps        |
+| squashmigrations         | merge migrations         |
+| makemigrations --check   | CI safety                |
+| makemigrations --dry-run | preview only             |
