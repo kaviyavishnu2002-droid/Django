@@ -1,0 +1,111 @@
+# install git
+1. search git download and download for windows
+2. open command prompt and type git plus enter (for checking git install)
+3. Then, git --version  (for )
+         git config --global user.name "<your github user name>" (enter)
+         git config --global user.email "<your github email>" (enter)
+4. open, github repository and click "code" and copy that link
+5. Now, open vs code's command terminal,
+        git clone <that link> (Get code from GitHub)
+6. git status
+   git branch
+   git branch -M <new_branch_name>  # (for change branch name)
+   git log  (See commit history)
+   git log --oneline  (short version)
+
+
+7. pull files, (if modifiy in github)
+   * git pull (Pull latest changes)
+   # (Why --rebase ? It keeps your history clean and avoids unnecessary merge commits.)
+   * git pull origin main  (or)  git pull origin main --rebase
+   * git checkout origin/main -- <filename>  (one file from GitHub)
+
+8. push file, (if modifiy in vs code)
+   * git add <new_file> (or add all files) git add .
+   * git commit -m "<any commit message>"
+   * git push origin main
+   (push first time
+   git push -u origin main
+   * -u is important for the first push)
+
+9. create a new folder in vs code and push to github
+   git init  (when you create a new project folder.)
+   git remote add origin <new_repositeriy_link>
+   git remote -v  (check)
+   git add .
+   git commit -m "<any_commit_message>"
+   git branch (check branch name)
+   git push origin <branch_name>
+   
+10. create a new folder in github and pull to vs code
+   git clone <that link>
+   git pull
+
+11. If you make a mistake and want to remove a file from staging:
+    git restore --staged migrations.txt
+    ✔ remove it from staging
+    ✔ but NOT delete the file
+   
+12. Branch commands (very important for teams)
+    * git branch feature-login  (Create branch)
+    * git checkout feature-login  (Switch branch)
+    * git switch feature-login  (Modern way)
+    * git checkout -b feature-login  (Create + switch)
+    * git branch  (List branches)
+    * git branch -d feature-login  (Delete branch)
+
+13. Merge branches
+    * git checkout main  (Switch to main branch)
+    * git merge feature-login  (Merge)
+
+13. Undo & fix mistakes (very useful)
+
+    * git restore --staged file.py  (Unstage file)
+    * git restore file.py  (Discard file changes)
+    * git reset --soft HEAD~1  [Undo last commit (keep changes)]
+    * git reset --hard HEAD~1  (Completely delete last commit)⚠ Dangerous – deletes changes.
+
+14. Temporary save (stash)
+    * git stash
+    * git stash pop  (Get it back)
+    * git stash list  (List stashes)
+
+15. Compare changes
+    * git diff
+    * git diff --staged  (Compare staged)
+
+16. File operations
+    * git mv old.py new.py (Rename)
+    * git rm file.py  (Delete)
+
+17. Fix commit message
+    * git commit --amend
+
+18. See who changed what (blame)
+    * git blame views.py  (Very useful in Django projects.)
+
+19. Tags (release versions)
+    * git tag v1.0
+    * git push origin v1.0
+
+20. Rebase (advanced – interview level)
+    * git rebase main
+
+21. Clean untracked files
+    * git clean -fd (⚠ Deletes untracked files.)
+
+22. GitHub authentication (now token based)
+    * git push
+
+23. Most important commands for Django developer
+    * git init
+    * git status
+    * git add .
+    * git commit -m "message"
+    * git branch
+    * git checkout -b branch
+    * git merge
+    * git pull
+    * git push
+    * git stash
+    * git restore
