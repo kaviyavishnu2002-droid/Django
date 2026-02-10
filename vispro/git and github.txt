@@ -10,6 +10,9 @@
 6. git status
    git branch
    git branch -M <new_branch_name>  # (for change branch name)
+   git log  (See commit history)
+   git log --oneline  (short version)
+
 
 7. pull files, (if modifiy in github)
    * git pull (simple way)
@@ -21,10 +24,14 @@
    * git add <new_file> (or add all files) git add .
    * git commit -m "<any commit message>"
    * git push origin main
+   (push first time
+   git push -u origin main
+   * -u is important for the first push)
 
 9. create a new folder in vs code and push to github
-   git init
+   git init  (when you create a new project folder.)
    git remote add origin <new_repositeriy_link>
+   git remote -v  (check)
    git add .
    git commit -m "<any_commit_message>"
    git branch (check branch name)
